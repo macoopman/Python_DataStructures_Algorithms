@@ -18,6 +18,8 @@ def k_pairs(L, k):
     results = []
     for value in L:                                                             # generate dictionary based off list O(N)
         search_dict[value] = True
+
+
     for value in L:                                                             # iterate through L and check if each value +- k is in the dictionary
         if (value + k) in search_dict:
             pair = (min(value, (value + k)),max(value, (value + k)))            # create a pair that is smaller,larger
