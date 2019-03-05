@@ -15,9 +15,12 @@ def find(path, name):
 
     def find_recursive(path, name, found):                  # recursive function to traverse tree and append found items
         path_abs = os.path.abspath(path)                        # get the absolute path name
-        if not os.path.exists(path_abs):
-            print(f"ERROR: Directory {path} not found...")
-            sys.exit(1)
+    
+        try:
+            dir_items = os.listdir(path_abs)
+        except:
+             print(f"ERROR: Directory {path} not found...")
+             sys.exit(1)
 
         dir_items = os.listdir(path_abs)                        # list all times in the currrent directory
 
