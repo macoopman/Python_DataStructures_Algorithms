@@ -16,11 +16,12 @@ import ctypes                                                                   
 class DynamicArray:
     """A dynamic array class akin to a simplified Python list."""
 
-    def __init__(self):
+    def __init__(self, verbose=False):
         """Create an empty array"""
         self._n = 0                                     # count of actual items
         self._capacity = 1                              # default array capacity
         self._A = self._make_array(self._capacity)      # low-level array
+        self._verbose = verbose
 
     def __len__(self):
         """Return number of elements stored in the array"""
@@ -42,6 +43,7 @@ class DynamicArray:
 
     def _resize(self, c):                           # non-public utility
         """Resize interanl array to capacity c"""
+        if self._verbose: print(f"Resizing: Starting Capacity = {self._capacity} : New Capacity = {c}")
         B = self._make_array(c)
         for k in range(self._n):
             B[k] = self._A[k]
@@ -58,7 +60,7 @@ class DynamicArray:
 if __name__ == "__main__":
 
     print("Creating New Dynamic Array")
-    x = DynamicArray()
+    x = DynamicArray(verbose=True)
 
     print('Appending: 1, "mike", 100, "hundred-mile" ')
     x.append(1)
